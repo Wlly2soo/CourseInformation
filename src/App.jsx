@@ -1,10 +1,3 @@
-const Course = ({ course }) => {
-  <div>
-    <Header course={course}/>
-    <Content course={course}/>
-  </div>
-}
-
 const Header = (props) => {
   console.log(props)
   const courseName = props.course.name
@@ -22,11 +15,9 @@ const Content = (props) => {
 
   return (
     <div>
-      <ul>
-        {props.course.map(c => 
-          <Part key={c.parts.id} c={c} />
-        )}
-      </ul>
+      <Part part={parts[0].name} excercise={parts[0].exercises} />
+      <Part part={parts[1].name} excercise={parts[1].exercises} />
+      <Part part={parts[2].name} excercise={parts[2].exercises} />
     </div>
   )
 }
@@ -57,23 +48,26 @@ const App = () => {
     parts: [
       {
         name: 'Fundamentals of React',
-        exercises: 10,
-        id: 1
+        exercises: 10
       },
       {
         name: 'Using props to pass data',
-        exercises: 7,
-        id: 2
+        exercises: 7
       },
       {
         name: 'State of a component',
-        exercises: 14,
-        id: 3
+        exercises: 14
       }
     ]
   }
 
-  return <Course course={course} />
+  return (
+    <div>
+      <Header course={course}/>
+      <Content course={course}/>
+      <Total course={course}/>
+    </div>
+  )
 }
 
 export default App
